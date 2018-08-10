@@ -1,0 +1,39 @@
+# Copyright 2018 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("filaflat_config") {
+  include_dirs = [ "include" ]
+}
+
+source_set("filaflat") {
+  public_configs = [ ":filaflat_config" ]
+
+  include_dirs = [ "src" ]
+
+  cflags = [ "-Wno-reorder" ]
+
+  sources = [
+    # Public headers.
+    "include/filaflat/ChunkContainer.h",
+    "include/filaflat/FilaflatDefs.h",
+    "include/filaflat/MaterialParser.h",
+    "include/filaflat/ShaderBuilder.h",
+    "include/filaflat/Unflattener.h",
+
+    # Sources.
+    "src/ChunkContainer.cpp",
+    "src/ChunkInterfaceBlock.cpp",
+    "src/MaterialChunk.cpp",
+    "src/MaterialParser.cpp",
+    "src/ShaderBuilder.cpp",
+    "src/SpirvDictionaryReader.cpp",
+    "src/TextDictionaryReader.cpp",
+    "src/Unflattener.cpp",
+  ]
+
+  deps = [
+    "../../third_party/robin-map:tsl",
+    "../utils",
+  ]
+}

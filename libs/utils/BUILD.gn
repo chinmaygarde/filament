@@ -1,0 +1,46 @@
+# Copyright 2018 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("utils_config") {
+  include_dirs = [ "include" ]
+}
+
+source_set("utils") {
+  public_configs = [ ":utils_config" ]
+
+  include_dirs = [ "src" ]
+
+  sources = [
+    # Public headers.
+    "include/CString.h",
+    "include/Entity.h",
+    "include/EntityInstance.h",
+    "include/EntityManager.h",
+    "include/algorithm.h",
+    "include/bitset.h",
+    "include/compiler.h",
+
+    # Sources.
+    "src/Allocator.cpp",
+    "src/CString.cpp",
+    "src/CallStack.cpp",
+    "src/CountDownLatch.cpp",
+    "src/CyclicBarrier.cpp",
+    "src/EntityManager.cpp",
+    "src/EntityManagerImpl.h",
+    "src/JobSystem.cpp",
+    "src/Log.cpp",
+    "src/NameComponentManager.cpp",
+    "src/Panic.cpp",
+    "src/Path.cpp",
+    "src/Profiler.cpp",
+    "src/Systrace.cpp",
+    "src/ashmem.cpp",
+    "src/linux/futex.cpp",
+  ]
+
+  deps = [
+    "../../third_party/robin-map:tsl",
+  ]
+}

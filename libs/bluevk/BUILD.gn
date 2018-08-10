@@ -1,0 +1,35 @@
+# Copyright 2018 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("bluevk_config") {
+  include_dirs = [ "include" ]
+}
+
+source_set("bluevk") {
+  public_configs = [ ":bluevk_config" ]
+
+  include_dirs = [ "src" ]
+
+  sources = [
+    # Public headers.
+
+    "include/bluevk/BlueVK.h",
+    "include/vulkan/vk_platform.h",
+    "include/vulkan/vulkan.h",
+    "include/vulkan/vulkan_android.h",
+    "include/vulkan/vulkan_core.h",
+    "include/vulkan/vulkan_ios.h",
+    "include/vulkan/vulkan_macos.h",
+    "include/vulkan/vulkan_mir.h",
+    "include/vulkan/vulkan_vi.h",
+    "include/vulkan/vulkan_wayland.h",
+    "include/vulkan/vulkan_win32.h",
+    "include/vulkan/vulkan_xcb.h",
+    "include/vulkan/vulkan_xlib.h",
+    "include/vulkan/vulkan_xlib_xrandr.h",
+
+    # Sources.
+    "src/BlueVK.cpp",
+  ]
+}

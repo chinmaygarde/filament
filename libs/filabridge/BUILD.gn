@@ -1,0 +1,36 @@
+# Copyright 2018 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("filabridge_config") {
+  include_dirs = [ "include" ]
+}
+
+source_set("filabridge") {
+  public_configs = [ ":filabridge_config" ]
+
+  sources = [
+    # Public headers.
+    "include/filament/EngineEnums.h",
+    "include/filament/MaterialEnums.h",
+    "include/filament/SamplerBindingMap.h",
+    "include/filament/SamplerInterfaceBlock.h",
+    "include/filament/UniformInterfaceBlock.h",
+    "include/filament/driver/DriverEnums.h",
+    "include/private/filament/SibGenerator.h",
+    "include/private/filament/UibGenerator.h",
+    "include/private/filament/Variant.h",
+
+    # Sources.
+    "src/SamplerBindingMap.cpp",
+    "src/SamplerInterfaceBlock.cpp",
+    "src/SibGenerator.cpp",
+    "src/UibGenerator.cpp",
+    "src/UniformInterfaceBlock.cpp",
+  ]
+
+  deps = [
+    "../math",
+    "../utils",
+  ]
+}
