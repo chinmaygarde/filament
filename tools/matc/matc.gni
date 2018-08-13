@@ -3,16 +3,16 @@
 # found in the LICENSE file.
 
 template("matc_gen") {
-  tool_target = ":matc($host_toolchain)"
-
   assert(defined(invoker.sources))
 
-  # tool_location =  get_target_outputs(tool_target)[0]
-
   action_foreach(target_name) {
-    # script = ":tool_location"
+    tool_target = "//third_party/filament/tools/matc($host_toolchain)"
 
-    script = ""
+    matc_out_dir = get_label_info(tool_target, "root_out_dir")
+
+    script = "$matc_out_dir/matc"
+
+    sources = invoker.sources
 
     inputs = invoker.sources
 

@@ -2,6 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
+import("../tools/matc/matc.gni")
+
 config("filament_config") {
   include_dirs = [ "include" ]
 }
@@ -10,6 +12,14 @@ config("filament_config_private") {
   cflags = [
     "-Wno-thread-safety-analysis",
     "-Wno-unused-private-field",
+  ]
+}
+
+matc_gen("materials") {
+  sources = [
+    "src/materials/defaultMaterial.mat",
+    "src/materials/skybox.mat",
+    "src/materials/skyboxRGBM.mat",
   ]
 }
 
@@ -171,7 +181,10 @@ source_set("filament") {
     "src/driver/vulkan/VulkanStagePool.cpp",
   ]
 
+  sources += get_target_outputs(":materials")
+
   deps = [
+    ":materials",
     "../libs/bluevk",
     "../libs/filabridge",
     "../libs/filaflat",

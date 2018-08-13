@@ -3,7 +3,10 @@
 # found in the LICENSE file.
 
 executable("matc") {
-  include_dirs = [ "src" ]
+  include_dirs = [
+    "src",
+    "../../filament/include",
+  ]
 
   sources = [
     "src/main.cpp",
@@ -20,5 +23,9 @@ executable("matc") {
     "src/matc/sca/ASTHelpers.cpp",
     "src/matc/sca/GLSLPostProcessor.cpp",
     "src/matc/sca/GLSLTools.cpp",
+  ]
+
+  deps = [
+    "../../libs/filamat",
   ]
 }

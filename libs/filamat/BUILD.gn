@@ -1,0 +1,62 @@
+# Copyright 2018 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("filamat_config") {
+  include_dirs = [ "include" ]
+}
+
+config("filamat_config_private") {
+}
+
+source_set("filamat") {
+  public_configs = [ ":filamat_config" ]
+
+  configs += [ ":filamat_config_private" ]
+
+  include_dirs = [ "src" ]
+
+  sources = [
+    # Public Headers.
+    "include/filamat/MaterialBuilder.h",
+    "include/filamat/Package.h",
+
+    # Private Headers.
+    "src/eiff/BlobDictionary.h",
+    "src/eiff/Chunk.h",
+    "src/eiff/ChunkContainer.h",
+    "src/eiff/DictionaryGlslChunk.h",
+    "src/eiff/DictionarySpirvChunk.h",
+    "src/eiff/Flattener.h",
+    "src/eiff/GlslChunk.h",
+    "src/eiff/LineDictionary.h",
+    "src/eiff/MaterialGlslChunk.h",
+    "src/eiff/MaterialInterfaceBlockChunk.h",
+    "src/eiff/MaterialSpirvChunk.h",
+    "src/eiff/ShaderEntry.h",
+    "src/eiff/SimpleFieldChunk.h",
+    "src/shaders/Shaders.h",
+
+    # Sources.
+    "src/MaterialBuilder.cpp",
+    "src/eiff/BlobDictionary.cpp",
+    "src/eiff/Chunk.cpp",
+    "src/eiff/ChunkContainer.cpp",
+    "src/eiff/DictionaryGlslChunk.cpp",
+    "src/eiff/DictionarySpirvChunk.cpp",
+    "src/eiff/LineDictionary.cpp",
+    "src/eiff/MaterialGlslChunk.cpp",
+    "src/eiff/MaterialInterfaceBlockChunk.cpp",
+    "src/eiff/MaterialSpirvChunk.cpp",
+    "src/eiff/SimpleFieldChunk.cpp",
+    "src/shaders/CodeGenerator.cpp",
+    "src/shaders/ShaderGenerator.cpp",
+  ]
+
+  deps = [
+    "../filabridge",
+    "../filaflat",
+    "../shaders",
+    "../utils",
+  ]
+}
