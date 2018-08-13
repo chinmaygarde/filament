@@ -6,15 +6,19 @@ config("filament_config") {
   include_dirs = [ "include" ]
 }
 
-source_set("filament") {
-  public_configs = [ ":filament_config" ]
-
-  include_dirs = [ "src" ]
-
+config("filament_config_private") {
   cflags = [
     "-Wno-thread-safety-analysis",
     "-Wno-unused-private-field",
   ]
+}
+
+source_set("filament") {
+  public_configs = [ ":filament_config" ]
+
+  configs += [ ":filament_config_private" ]
+
+  include_dirs = [ "src" ]
 
   sources = [
     # Public headers.

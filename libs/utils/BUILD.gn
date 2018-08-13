@@ -6,8 +6,17 @@ config("utils_config") {
   include_dirs = [ "include" ]
 }
 
+config("utils_config_private") {
+  cflags = [
+    "-Wno-sign-compare",
+    "-Wno-unused-private-field",
+  ]
+}
+
 source_set("utils") {
   public_configs = [ ":utils_config" ]
+
+  configs += [ ":utils_config_private" ]
 
   include_dirs = [ "src" ]
 

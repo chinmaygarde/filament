@@ -1,0 +1,24 @@
+# Copyright 2018 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+executable("matc") {
+  include_dirs = [ "src" ]
+
+  sources = [
+    "src/main.cpp",
+    "src/matc/CommandlineConfig.cpp",
+    "src/matc/Compiler.cpp",
+    "src/matc/Enums.cpp",
+    "src/matc/JsonishLexer.cpp",
+    "src/matc/JsonishParser.cpp",
+    "src/matc/MaterialCompiler.cpp",
+    "src/matc/MaterialLexer.cpp",
+    "src/matc/ParametersProcessor.cpp",
+    "src/matc/PostprocessMaterialBuilder.cpp",
+    "src/matc/PostprocessMaterialCompiler.cpp",
+    "src/matc/sca/ASTHelpers.cpp",
+    "src/matc/sca/GLSLPostProcessor.cpp",
+    "src/matc/sca/GLSLTools.cpp",
+  ]
+}

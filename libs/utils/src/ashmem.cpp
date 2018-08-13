@@ -120,7 +120,14 @@ int ashmem_create_region(const char*, size_t size) {
     return fd;
 }
 
+#elif defined(__Fuchsia__)
+
+int ashmem_create_region(const char*, size_t size) {
+    return -1;
+}
+
 #else
+
 int ashmem_create_region(const char*, size_t size) {
     char template_path[512];
     snprintf(template_path, sizeof(template_path), "/tmp/filament-ashmem-%lu-XXXXXXXXX", 

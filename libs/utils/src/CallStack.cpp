@@ -23,7 +23,7 @@
 #include <memory>
 
 // FIXME: Android doesn't have execinfo.h (but has unwind.h)
-#if !defined(ANDROID) && !defined(WIN32)
+#if !defined(ANDROID) && !defined(WIN32) && !defined(__Fuchsia__)
 #include <execinfo.h>
 #endif
 
@@ -76,7 +76,7 @@ void CallStack::update_gcc(size_t ignore) noexcept {
     ssize_t size = 0;
 
     void *array[NUM_FRAMES];
-#if !defined(ANDROID) && !defined(WIN32)
+#if !defined(ANDROID) && !defined(WIN32) && !defined(__Fuchsia__)
     size = ::backtrace(array, NUM_FRAMES);
     size -= ignore;
 #endif
@@ -115,7 +115,7 @@ utils::CString CallStack::demangleTypeName(const char* mangled) {
 // ------------------------------------------------------------------------------------------------
 
 io::ostream& operator<<(io::ostream& stream, const CallStack& callstack) {
-#if !defined(ANDROID) && !defined(WIN32)
+#if !defined(ANDROID) && !defined(WIN32) && !defined(__Fuchsia__)
     size_t size = callstack.getFrameCount();
     for (size_t i = 0; i < size; i++) {
         intptr_t pc = callstack[i];

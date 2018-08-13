@@ -1,0 +1,27 @@
+# Copyright 2018 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+template("matc_gen") {
+  tool_target = ":matc($host_toolchain)"
+
+  assert(defined(invoker.sources))
+
+  # tool_location =  get_target_outputs(tool_target)[0]
+
+  action_foreach(target_name) {
+    # script = ":tool_location"
+
+    script = ""
+
+    inputs = invoker.sources
+
+    outputs = [
+      "$target_gen_dir/{{source_name_part}}.inc.h",
+    ]
+
+    deps = [
+      tool_target,
+    ]
+  }
+}

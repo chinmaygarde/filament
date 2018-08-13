@@ -6,12 +6,22 @@ config("filaflat_config") {
   include_dirs = [ "include" ]
 }
 
+config("filaflat_config_private") {
+  cflags = [
+    "-Wno-reorder",
+    "-Wno-sign-compare",
+  ]
+}
+
 source_set("filaflat") {
   public_configs = [ ":filaflat_config" ]
 
-  include_dirs = [ "src" ]
+  configs += [ ":filaflat_config_private" ]
 
-  cflags = [ "-Wno-reorder" ]
+  include_dirs = [
+    "src",
+    "../../filament/include",
+  ]
 
   sources = [
     # Public headers.
@@ -34,6 +44,8 @@ source_set("filaflat") {
 
   deps = [
     "../../third_party/robin-map:tsl",
+    "../filabridge",
+    "../math",
     "../utils",
   ]
 }
